@@ -1,0 +1,65 @@
+name: Deploy ADF ARM Template
+
+on: 
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to deploy (nonprod/prod)?"
+        required: true
+        default: "nonprod"
+      templateFile:
+        description: "ARM Template filename"
+        required: true
+
+jobs:  
+  deploy-stage-east:
+    if:  github.event.inputs.environment == 'nonprod'
+    name: Deploy STAGE East ADF
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
+    env:
+      RG_NAME: ${{ vars.STAGE_EAST_RG }}
+      ADF_NAME: ${{ vars.STAGE_EAST_ADF_NAME }}
+      ARM_FILE:  ./generated/${{ github.event.inputs.templateFile }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Login via Az module
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_SP_CREDENTIALS }}
+          enable-AzPSSession: true
+      - name: Deploy resources
+        uses: Azure/data-factory-deploy-action@v1.2.0
+        with:
+          resourceGroupName: ${{ env.RG_NAME }}
+          dataFactoryName: ${{ env.ADF_NAME }}
+          armTemplateFile:  ${{ env.ARM_FILE }}
+          armTemplateParametersFile:  ./armTemplate_params/stage-east.json
+          skipAzModuleInstallation: false
+  
+  deploy-prod-east:
+    if:  github.event.inputs.environment == 'prod'
+    name: Deploy PROD East ADF
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
+    env:
+      RG_NAME: ${{ vars.PROD_EAST_RG }}
+      ADF_NAME: ${{ vars.PROD_EAST_ADF_NAME }}
+      ARM_FILE:  generated\\${{ github.event.inputs.templateFile }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Login via Az module
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_SP_CREDENTIALS }}
+          enable-AzPSSession: true
+      - name: Deploy resources
+        uses: Azure/data-factory-deploy-action@v1.2.0
+        with:
+          resourceGroupName: ${{ env.RG_NAME }}
+          dataFactoryName: ${{ env.ADF_NAME }}
+          armTemplateFile:  ${{ env.ARM_FILE }}
+          armTemplateParametersFile:  ./armTemplate_params/prod-east.json
+          skipAzModuleInstallation: false

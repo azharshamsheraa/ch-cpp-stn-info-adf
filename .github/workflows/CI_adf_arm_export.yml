@@ -1,0 +1,34 @@
+# This is workflow to deploy Azure Data Factory resources
+# this uses ARM templates for the deployment of the Factory, Pipelines, Datasets etc.
+
+name: Export ADF ARM template
+
+# Controls when the workflow will run
+on:
+  push:
+    branches:
+      - develop
+  
+jobs:
+    adfArmExport:
+      name: Export Data Factory
+      runs-on: ubuntu-latest
+      steps: 
+          - name: Checkout
+            uses: actions/checkout@v2
+          
+          - name: Export ARM Template
+            id: export
+            uses: Azure/data-factory-export-action@v1.2.0
+    
+          - name: Display structure of downloaded files
+            run: ls -R
+
+          - name: Commit ARM Template
+            run: |
+              cp armTemplate/ARMTemplateForFactory.json generated/ARMTemplateForFactory_$(TZ=America/Chicago date +%F_%H%M%S).json
+              git config --global user.name 'custhub'
+              git config --global user.email 'custhub@noreply.github.com'
+              git add generated/*.json
+              git commit -m "exported ARM template"
+              git push
