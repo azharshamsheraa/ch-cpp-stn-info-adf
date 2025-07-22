@@ -1,0 +1,12 @@
+{
+	"name": "IR-Shared-CPP",
+	"properties": {
+		"type": "SelfHosted",
+		"typeProperties": {
+			"linkedInfo": {
+				"resourceId": "/subscriptions/91c1395e-45ac-46d3-9c2e-734822dc13e2/resourcegroups/ct-n-zeaus-mcdm-rg/providers/Microsoft.DataFactory/factories/ct-n-zeaus-mcdm-data-migration-df/integrationruntimes/IR-ct-zeaus-mcdm",
+				"authorizationType": "Rbac"
+			}
+		}
+	}
+}
