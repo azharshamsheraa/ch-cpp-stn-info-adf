@@ -1,0 +1,14 @@
+{
+	"name": "CPP_SQLMI_CEP_qa",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlMI",
+		"typeProperties": {
+			"server": "ct-n-zeaus-mcdm-sqlmi.public.386e326565fc.database.windows.net,3342",
+			"database": "ct_t_cep_sqlmdb",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SystemAssignedManagedIdentity"
+		}
+	}
+}
