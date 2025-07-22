@@ -1,0 +1,9 @@
+{
+	"name": "ct-n-zeaus-cp-qa-stn-info-df",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "99339502-0dcc-4a94-a48e-fe3ea8856140",
+		"tenantId": "49793faf-eb3f-4d99-a0cf-aef7cce79dc1"
+	}
+}
