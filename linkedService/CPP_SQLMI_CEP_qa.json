@@ -4,11 +4,15 @@
 		"annotations": [],
 		"type": "AzureSqlMI",
 		"typeProperties": {
-			"server": "ct-n-zeaus-mcdm-sqlmi.public.386e326565fc.database.windows.net,3342",
+			"server": "ct-n-mcdm-fog.386e326565fc.database.windows.net",
 			"database": "ct_t_cep_sqlmdb",
 			"encrypt": "mandatory",
 			"trustServerCertificate": false,
 			"authenticationType": "SystemAssignedManagedIdentity"
+		},
+		"connectVia": {
+			"referenceName": "IR-Shared-CPP",
+			"type": "IntegrationRuntimeReference"
 		}
 	}
 }
