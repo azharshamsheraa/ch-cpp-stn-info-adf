@@ -1,0 +1,11 @@
+{
+	"name": "CPPDLArptTimeOffstLS",
+	"properties": {
+		"description": "The ADSL Gen2 Storage for AIRPRT_TIME_OFFSET",
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://aabaoriondlsnp.dfs.core.windows.net"
+		}
+	}
+}
