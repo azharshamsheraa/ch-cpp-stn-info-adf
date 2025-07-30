@@ -1,0 +1,16 @@
+{
+	"name": "AzureSqlMIOasisLoad",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CPP_SQLMI_CEP_qa",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlMITable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ECDD_STN_INFO_OASIS_LOAD"
+		}
+	}
+}
