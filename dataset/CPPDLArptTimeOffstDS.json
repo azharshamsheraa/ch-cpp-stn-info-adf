@@ -1,0 +1,20 @@
+{
+	"name": "CPPDLArptTimeOffstDS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CPPDLArptTimeOffstLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "stage/delta-pkg/AIRPRT_TIME_OFFSET",
+				"fileSystem": "refcorepkg"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
