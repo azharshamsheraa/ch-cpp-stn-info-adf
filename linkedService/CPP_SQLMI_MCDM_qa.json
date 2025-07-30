@@ -1,0 +1,18 @@
+{
+	"name": "CPP_SQLMI_MCDM_qa",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlMI",
+		"typeProperties": {
+			"server": "ct-n-mcdm-fog.386e326565fc.database.windows.net",
+			"database": "ct_t_mcdm_sqlmdb",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SystemAssignedManagedIdentity"
+		},
+		"connectVia": {
+			"referenceName": "IR-Shared-CPP",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
