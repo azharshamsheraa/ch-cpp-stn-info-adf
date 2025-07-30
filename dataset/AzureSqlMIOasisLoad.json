@@ -2,12 +2,127 @@
 	"name": "AzureSqlMIOasisLoad",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "CPP_SQLMI_CEP_qa",
+			"referenceName": "CPP_SQLMI_MCDM_qa",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "AzureSqlMITable",
-		"schema": [],
+		"schema": [
+			{
+				"name": "STN_CD",
+				"type": "varchar"
+			},
+			{
+				"name": "STN_NM",
+				"type": "varchar"
+			},
+			{
+				"name": "LAT_DEGREE_COORD",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "LAT_MINUTE_COORD",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "LAT_SECOND_COORD",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "LAT_HEMSPHR_CD",
+				"type": "varchar"
+			},
+			{
+				"name": "LNGTD_DEGREE_COORD",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "LNGTD_MINUTE_COORD",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "LNGTD_SECOND_COORD",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "LNGTD_HEMSPHR_CD",
+				"type": "varchar"
+			},
+			{
+				"name": "GMT_OFFSET_MINUTE_QTY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "DST_ADJUST_MINUTE_QTY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "AIRPRT_ELEVATN_FT_QTY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "CNTRY_CD",
+				"type": "varchar"
+			},
+			{
+				"name": "STATE_PROVNC_CD",
+				"type": "varchar"
+			},
+			{
+				"name": "ICAO_REGION_CD",
+				"type": "varchar"
+			},
+			{
+				"name": "WORLD_AREA_CD",
+				"type": "varchar"
+			},
+			{
+				"name": "INFO_SRC_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "ICAO_STN_CD",
+				"type": "varchar"
+			},
+			{
+				"name": "LAT_RADIANS_QTY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "LNGTD_RADIANS_QTY",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "STN_REGION_NM",
+				"type": "varchar"
+			},
+			{
+				"name": "CITY_METROPLEX_CD",
+				"type": "char"
+			}
+		],
 		"typeProperties": {
 			"schema": "dbo",
 			"table": "ECDD_STN_INFO_OASIS_LOAD"
