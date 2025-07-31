@@ -16,6 +16,107 @@
 			},
 			"compressionCodec": "snappy"
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "AIRPRT_IATA_CD",
+				"type": "UTF8"
+			},
+			{
+				"name": "AIRPRT_NM",
+				"type": "UTF8"
+			},
+			{
+				"name": "DST_ZONE_CD",
+				"type": "UTF8"
+			},
+			{
+				"name": "CNTRY_CD",
+				"type": "UTF8"
+			},
+			{
+				"name": "TIME_OFFSET_EFF_START_GMT_TMS",
+				"type": "INT96"
+			},
+			{
+				"name": "TIME_OFFSET_EFF_START_GMT_DT",
+				"type": "DATE"
+			},
+			{
+				"name": "TIME_OFFSET_EFF_START_GMT_TM",
+				"type": "UTF8"
+			},
+			{
+				"name": "TIME_OFFSET_EFF_END_GMT_TMS",
+				"type": "INT96"
+			},
+			{
+				"name": "TIME_OFFSET_EFF_END_GMT_DT",
+				"type": "DATE"
+			},
+			{
+				"name": "TIME_OFFSET_EFF_END_GMT_TM",
+				"type": "UTF8"
+			},
+			{
+				"name": "TIME_OFFSET_EFF_START_LCL_TMS",
+				"type": "INT96"
+			},
+			{
+				"name": "TIME_OFFSET_EFF_START_LCL_DT",
+				"type": "DATE"
+			},
+			{
+				"name": "TIME_OFFSET_EFF_START_LCL_TM",
+				"type": "UTF8"
+			},
+			{
+				"name": "TIME_OFFSET_EFF_END_LCL_TMS",
+				"type": "INT96"
+			},
+			{
+				"name": "TIME_OFFSET_EFF_END_LCL_DT",
+				"type": "DATE"
+			},
+			{
+				"name": "TIME_OFFSET_EFF_END_LCL_TM",
+				"type": "UTF8"
+			},
+			{
+				"name": "DAY_LIGHT_SAVE_OBSRV_IND",
+				"type": "UTF8"
+			},
+			{
+				"name": "GMT_OFFSET_MINUTE_QTY",
+				"type": "INT32"
+			},
+			{
+				"name": "GMT_OFFSET_TM",
+				"type": "UTF8"
+			},
+			{
+				"name": "DAY_LIGHT_SAVE_OFFSET_MINUTE_QTY",
+				"type": "INT32"
+			},
+			{
+				"name": "DAY_LIGHT_SAVE_OFFSET_TM",
+				"type": "UTF8"
+			},
+			{
+				"name": "AIRPRT_OFFSET_MINUTE_QTY",
+				"type": "INT32"
+			},
+			{
+				"name": "AIRPRT_OFFSET_TM",
+				"type": "UTF8"
+			},
+			{
+				"name": "UPDT_GMT_TMS",
+				"type": "INT96"
+			},
+			{
+				"name": "SNAPSHOT_DT",
+				"type": "DATE"
+			}
+		]
 	}
 }
