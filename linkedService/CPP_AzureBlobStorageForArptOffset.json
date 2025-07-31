@@ -1,0 +1,11 @@
+{
+	"name": "CPP_AzureBlobStorageForArptOffset",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://ctnzeauscppqasa.blob.core.windows.net/",
+			"accountKind": "StorageV2"
+		}
+	}
+}
