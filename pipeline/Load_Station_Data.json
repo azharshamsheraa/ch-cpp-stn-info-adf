@@ -30,7 +30,6 @@
 					},
 					"sink": {
 						"type": "SqlMISink",
-						"writeBatchSize": 0,
 						"writeBehavior": "upsert",
 						"upsertSettings": {
 							"useTempDB": true,
