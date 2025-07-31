@@ -31,7 +31,6 @@
 					"sink": {
 						"type": "SqlMISink",
 						"writeBatchSize": 1,
-						"preCopyScript": "select top 10 from CPPDLArptTimeOffstDS",
 						"writeBehavior": "upsert",
 						"upsertSettings": {
 							"useTempDB": true,
