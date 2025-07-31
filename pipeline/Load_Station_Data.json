@@ -34,7 +34,9 @@
 						"writeBehavior": "upsert",
 						"upsertSettings": {
 							"useTempDB": true,
-							"keys": []
+							"keys": [
+								"STN_NM"
+							]
 						},
 						"sqlWriterUseTableLock": false
 					},
