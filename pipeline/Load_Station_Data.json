@@ -31,7 +31,7 @@
 						"writeBatchSize": 1,
 						"writeBehavior": "upsert",
 						"upsertSettings": {
-							"useTempDB": true,
+							"useTempDB": false,
 							"keys": [
 								"STN_NM"
 							]
