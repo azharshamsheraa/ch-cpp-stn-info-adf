@@ -30,11 +30,12 @@
 					},
 					"sink": {
 						"type": "SqlMISink",
+						"writeBatchSize": 0,
 						"writeBehavior": "upsert",
 						"upsertSettings": {
 							"useTempDB": true,
 							"keys": [
-								"STN_CD"
+								"STN_NM"
 							]
 						},
 						"sqlWriterUseTableLock": false
