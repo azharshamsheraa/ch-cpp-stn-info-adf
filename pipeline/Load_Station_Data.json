@@ -31,7 +31,6 @@
 					"sink": {
 						"type": "SqlMISink",
 						"writeBatchSize": 1,
-						"preCopyScript": "select top 10 from CPPDLArptTimeOffstDS",
 						"writeBehavior": "upsert",
 						"upsertSettings": {
 							"useTempDB": true,
@@ -132,9 +131,22 @@
 				"typeProperties": {
 					"source": {
 						"type": "ParquetSource",
+						"additionalColumns": [
+							{
+								"value": "$$FILEPATH"
+							},
+							{
+								"value": "$$FILEPATH"
+							},
+							{
+								"value": "$$FILEPATH"
+							}
+						],
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": false,
+							"wildcardFolderPath": "stage/delta-pkg/AIRPRT_TIME_OFFSET",
+							"wildcardFileName": "*.parquet",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -143,7 +155,13 @@
 					},
 					"sink": {
 						"type": "SqlMISink",
-						"writeBehavior": "insert",
+						"writeBehavior": "upsert",
+						"upsertSettings": {
+							"useTempDB": true,
+							"keys": [
+								"STN_NM"
+							]
+						},
 						"sqlWriterUseTableLock": false
 					},
 					"enableStaging": false,
