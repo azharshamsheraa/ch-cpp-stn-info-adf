@@ -110,14 +110,302 @@
 						"mappings": [
 							{
 								"source": {
+									"name": "AIRPRT_IATA_CD",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "AIRPRT_IATA_CD",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
 									"name": "AIRPRT_NM",
 									"type": "String",
 									"physicalType": "UTF8"
 								},
 								"sink": {
-									"name": "STN_NM",
+									"name": "AIRPRT_NM",
 									"type": "String",
-									"physicalType": "varchar"
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DST_ZONE_CD",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "DST_ZONE_CD",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CNTRY_CD",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "CNTRY_CD",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TIME_OFFSET_EFF_START_GMT_TMS",
+									"type": "DateTime",
+									"physicalType": "INT96"
+								},
+								"sink": {
+									"name": "TIME_OFFSET_EFF_START_GMT_TMS",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "TIME_OFFSET_EFF_START_GMT_DT",
+									"type": "DateTime",
+									"physicalType": "DATE"
+								},
+								"sink": {
+									"name": "TIME_OFFSET_EFF_START_GMT_DT",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "TIME_OFFSET_EFF_START_GMT_TM",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "TIME_OFFSET_EFF_START_GMT_TM",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TIME_OFFSET_EFF_END_GMT_TMS",
+									"type": "DateTime",
+									"physicalType": "INT96"
+								},
+								"sink": {
+									"name": "TIME_OFFSET_EFF_END_GMT_TMS",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "TIME_OFFSET_EFF_END_GMT_DT",
+									"type": "DateTime",
+									"physicalType": "DATE"
+								},
+								"sink": {
+									"name": "TIME_OFFSET_EFF_END_GMT_DT",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "TIME_OFFSET_EFF_END_GMT_TM",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "TIME_OFFSET_EFF_END_GMT_TM",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TIME_OFFSET_EFF_START_LCL_TMS",
+									"type": "DateTime",
+									"physicalType": "INT96"
+								},
+								"sink": {
+									"name": "TIME_OFFSET_EFF_START_LCL_TMS",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "TIME_OFFSET_EFF_START_LCL_DT",
+									"type": "DateTime",
+									"physicalType": "DATE"
+								},
+								"sink": {
+									"name": "TIME_OFFSET_EFF_START_LCL_DT",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "TIME_OFFSET_EFF_START_LCL_TM",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "TIME_OFFSET_EFF_START_LCL_TM",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TIME_OFFSET_EFF_END_LCL_TMS",
+									"type": "DateTime",
+									"physicalType": "INT96"
+								},
+								"sink": {
+									"name": "TIME_OFFSET_EFF_END_LCL_TMS",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "TIME_OFFSET_EFF_END_LCL_DT",
+									"type": "DateTime",
+									"physicalType": "DATE"
+								},
+								"sink": {
+									"name": "TIME_OFFSET_EFF_END_LCL_DT",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "TIME_OFFSET_EFF_END_LCL_TM",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "TIME_OFFSET_EFF_END_LCL_TM",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DAY_LIGHT_SAVE_OBSRV_IND",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "DAY_LIGHT_SAVE_OBSRV_IND",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GMT_OFFSET_MINUTE_QTY",
+									"type": "Int32",
+									"physicalType": "INT32"
+								},
+								"sink": {
+									"name": "GMT_OFFSET_MINUTE_QTY",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "GMT_OFFSET_TM",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "GMT_OFFSET_TM",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DAY_LIGHT_SAVE_OFFSET_MINUTE_QTY",
+									"type": "Int32",
+									"physicalType": "INT32"
+								},
+								"sink": {
+									"name": "DAY_LIGHT_SAVE_OFFSET_MINUTE_QTY",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "DAY_LIGHT_SAVE_OFFSET_TM",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "DAY_LIGHT_SAVE_OFFSET_TM",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AIRPRT_OFFSET_MINUTE_QTY",
+									"type": "Int32",
+									"physicalType": "INT32"
+								},
+								"sink": {
+									"name": "AIRPRT_OFFSET_MINUTE_QTY",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "AIRPRT_OFFSET_TM",
+									"type": "String",
+									"physicalType": "UTF8"
+								},
+								"sink": {
+									"name": "AIRPRT_OFFSET_TM",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "UPDT_GMT_TMS",
+									"type": "DateTime",
+									"physicalType": "INT96"
+								},
+								"sink": {
+									"name": "UPDT_GMT_TMS",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "SNAPSHOT_DT",
+									"type": "DateTime",
+									"physicalType": "DATE"
+								},
+								"sink": {
+									"name": "SNAPSHOT_DT",
+									"type": "DateTime",
+									"physicalType": "datetime2"
 								}
 							}
 						],
