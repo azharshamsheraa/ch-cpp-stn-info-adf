@@ -5,8 +5,6 @@
 			{
 				"name": "RefreshStationInfoData",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -31,14 +29,9 @@
 					"sink": {
 						"type": "SqlMISink",
 						"writeBatchSize": 1,
-						"writeBehavior": "upsert",
-						"upsertSettings": {
-							"useTempDB": true,
-							"keys": [
-								"STN_NM"
-							]
-						},
-						"sqlWriterUseTableLock": false
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": true,
+						"tableOption": "autoCreate"
 					},
 					"enableStaging": false,
 					"translator": {
