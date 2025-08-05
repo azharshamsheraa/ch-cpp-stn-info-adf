@@ -1,0 +1,440 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "factoryName": {
+            "type": "string",
+            "metadata": "Data Factory name",
+            "defaultValue": "ct-n-zeaus-cp-qa-stn-info-df"
+        },
+        "AzureKeyVault1_properties_typeProperties_baseUrl": {
+            "type": "string",
+            "defaultValue": "https://ct-n-zeaus-cp-qa-kv.vault.azure.net/"
+        },
+        "CPPDLArptTimeOffstLS_properties_typeProperties_url": {
+            "type": "string",
+            "defaultValue": "https://aabaoriondlsnp.dfs.core.windows.net"
+        },
+        "CPP_AzureBlobStorageForArptOffset_properties_typeProperties_serviceEndpoint": {
+            "type": "string",
+            "defaultValue": "https://ctnzeauscppqasa.blob.core.windows.net/"
+        },
+        "CPP_SQLMI_CEP_qa_properties_typeProperties_server": {
+            "type": "string",
+            "defaultValue": "ct-n-mcdm-fog.386e326565fc.database.windows.net"
+        },
+        "CPP_SQLMI_CEP_qa_properties_typeProperties_database": {
+            "type": "string",
+            "defaultValue": "ct_t_cep_sqlmdb"
+        },
+        "CPP_SQLMI_MCDM_qa_properties_typeProperties_server": {
+            "type": "string",
+            "defaultValue": "ct-n-mcdm-fog.386e326565fc.database.windows.net"
+        },
+        "CPP_SQLMI_MCDM_qa_properties_typeProperties_database": {
+            "type": "string",
+            "defaultValue": "ct_t_mcdm_sqlmdb"
+        },
+        "IR-Shared-CPP_properties_typeProperties_linkedInfo_resourceId": {
+            "type": "string",
+            "defaultValue": "/subscriptions/91c1395e-45ac-46d3-9c2e-734822dc13e2/resourcegroups/ct-n-zeaus-mcdm-rg/providers/Microsoft.DataFactory/factories/ct-n-zeaus-mcdm-data-migration-df/integrationruntimes/IR-ct-zeaus-mcdm"
+        }
+    },
+    "variables": {
+        "factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+    },
+    "resources": [
+        {
+            "name": "[concat(parameters('factoryName'), '/Load_Station_Data')]",
+            "type": "Microsoft.DataFactory/factories/pipelines",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "activities": [
+                    {
+                        "name": "Copy data1",
+                        "type": "Copy",
+                        "dependsOn": [],
+                        "policy": {
+                            "timeout": "0.12:00:00",
+                            "retry": 0,
+                            "retryIntervalInSeconds": 30,
+                            "secureOutput": false,
+                            "secureInput": false
+                        },
+                        "userProperties": [],
+                        "typeProperties": {
+                            "source": {
+                                "type": "ParquetSource",
+                                "storeSettings": {
+                                    "type": "AzureBlobFSReadSettings",
+                                    "recursive": false,
+                                    "wildcardFolderPath": "stage/delta-pkg/AIRPRT_TIME_OFFSET",
+                                    "wildcardFileName": "part-00000-00052e28-7286-452e-b147-2b7826632482-c000.snappy.parquet",
+                                    "enablePartitionDiscovery": false
+                                },
+                                "formatSettings": {
+                                    "type": "ParquetReadSettings"
+                                }
+                            },
+                            "sink": {
+                                "type": "SqlMISink",
+                                "writeBehavior": "upsert",
+                                "upsertSettings": {
+                                    "useTempDB": true,
+                                    "keys": [
+                                        "AIRPRT_IATA_CD"
+                                    ]
+                                },
+                                "sqlWriterUseTableLock": false
+                            },
+                            "enableStaging": false,
+                            "translator": {
+                                "type": "TabularTranslator",
+                                "mappings": [
+                                    {
+                                        "source": {
+                                            "name": "AIRPRT_IATA_CD",
+                                            "type": "String",
+                                            "physicalType": "UTF8"
+                                        },
+                                        "sink": {
+                                            "name": "AIRPRT_IATA_CD",
+                                            "type": "String",
+                                            "physicalType": "varchar"
+                                        }
+                                    },
+                                    {
+                                        "source": {
+                                            "name": "AIRPRT_NM",
+                                            "type": "String",
+                                            "physicalType": "UTF8"
+                                        },
+                                        "sink": {
+                                            "name": "AIRPRT_NM",
+                                            "type": "String",
+                                            "physicalType": "varchar"
+                                        }
+                                    },
+                                    {
+                                        "source": {
+                                            "name": "TIME_OFFSET_EFF_START_GMT_TMS",
+                                            "type": "DateTime",
+                                            "physicalType": "INT96"
+                                        },
+                                        "sink": {
+                                            "name": "OFFSET_TM_EFF_START_GMT_TMS",
+                                            "type": "DateTime",
+                                            "physicalType": "datetime2"
+                                        }
+                                    },
+                                    {
+                                        "source": {
+                                            "name": "TIME_OFFSET_EFF_END_GMT_TMS",
+                                            "type": "DateTime",
+                                            "physicalType": "INT96"
+                                        },
+                                        "sink": {
+                                            "name": "OFFSET_TM_EFF_END_GMT_TMS",
+                                            "type": "DateTime",
+                                            "physicalType": "datetime2"
+                                        }
+                                    },
+                                    {
+                                        "source": {
+                                            "name": "GMT_OFFSET_MINUTE_QTY",
+                                            "type": "Int32",
+                                            "physicalType": "INT32"
+                                        },
+                                        "sink": {
+                                            "name": "GMT_OFFSET_MINUTE_QTY",
+                                            "type": "Int16",
+                                            "physicalType": "smallint"
+                                        }
+                                    }
+                                ],
+                                "typeConversion": true,
+                                "typeConversionSettings": {
+                                    "allowDataTruncation": true,
+                                    "treatBooleanAsNumber": false
+                                }
+                            }
+                        },
+                        "inputs": [
+                            {
+                                "referenceName": "CPPDLArptTimeOffstDS",
+                                "type": "DatasetReference",
+                                "parameters": {}
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "referenceName": "AzureSqlMIOasisLoad",
+                                "type": "DatasetReference",
+                                "parameters": {}
+                            }
+                        ]
+                    }
+                ],
+                "policy": {
+                    "elapsedTimeMetric": {}
+                },
+                "annotations": []
+            },
+            "dependsOn": [
+                "[concat(variables('factoryId'), '/datasets/CPPDLArptTimeOffstDS')]",
+                "[concat(variables('factoryId'), '/datasets/AzureSqlMIOasisLoad')]"
+            ]
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/AzureSqlMIOasisLoad')]",
+            "type": "Microsoft.DataFactory/factories/datasets",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "linkedServiceName": {
+                    "referenceName": "CPP_SQLMI_MCDM_qa",
+                    "type": "LinkedServiceReference"
+                },
+                "annotations": [],
+                "type": "AzureSqlMITable",
+                "schema": [],
+                "typeProperties": {
+                    "schema": "ECDOREF",
+                    "table": "ECDD_STN_OFFSET_TM_INFO"
+                }
+            },
+            "dependsOn": [
+                "[concat(variables('factoryId'), '/linkedServices/CPP_SQLMI_MCDM_qa')]"
+            ]
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/CPPDLArptTimeOffstDS')]",
+            "type": "Microsoft.DataFactory/factories/datasets",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "linkedServiceName": {
+                    "referenceName": "CPPDLArptTimeOffstLS",
+                    "type": "LinkedServiceReference"
+                },
+                "annotations": [],
+                "type": "Parquet",
+                "typeProperties": {
+                    "location": {
+                        "type": "AzureBlobFSLocation",
+                        "fileName": "part-00000-00052e28-7286-452e-b147-2b7826632482-c000.snappy.parquet",
+                        "folderPath": "stage/delta-pkg/AIRPRT_TIME_OFFSET",
+                        "fileSystem": "refcorepkg"
+                    },
+                    "compressionCodec": "snappy"
+                },
+                "schema": [
+                    {
+                        "name": "AIRPRT_IATA_CD",
+                        "type": "UTF8"
+                    },
+                    {
+                        "name": "AIRPRT_NM",
+                        "type": "UTF8"
+                    },
+                    {
+                        "name": "DST_ZONE_CD",
+                        "type": "UTF8"
+                    },
+                    {
+                        "name": "CNTRY_CD",
+                        "type": "UTF8"
+                    },
+                    {
+                        "name": "TIME_OFFSET_EFF_START_GMT_TMS",
+                        "type": "INT96"
+                    },
+                    {
+                        "name": "TIME_OFFSET_EFF_START_GMT_DT",
+                        "type": "DATE"
+                    },
+                    {
+                        "name": "TIME_OFFSET_EFF_START_GMT_TM",
+                        "type": "UTF8"
+                    },
+                    {
+                        "name": "TIME_OFFSET_EFF_END_GMT_TMS",
+                        "type": "INT96"
+                    },
+                    {
+                        "name": "TIME_OFFSET_EFF_END_GMT_DT",
+                        "type": "DATE"
+                    },
+                    {
+                        "name": "TIME_OFFSET_EFF_END_GMT_TM",
+                        "type": "UTF8"
+                    },
+                    {
+                        "name": "TIME_OFFSET_EFF_START_LCL_TMS",
+                        "type": "INT96"
+                    },
+                    {
+                        "name": "TIME_OFFSET_EFF_START_LCL_DT",
+                        "type": "DATE"
+                    },
+                    {
+                        "name": "TIME_OFFSET_EFF_START_LCL_TM",
+                        "type": "UTF8"
+                    },
+                    {
+                        "name": "TIME_OFFSET_EFF_END_LCL_TMS",
+                        "type": "INT96"
+                    },
+                    {
+                        "name": "TIME_OFFSET_EFF_END_LCL_DT",
+                        "type": "DATE"
+                    },
+                    {
+                        "name": "TIME_OFFSET_EFF_END_LCL_TM",
+                        "type": "UTF8"
+                    },
+                    {
+                        "name": "DAY_LIGHT_SAVE_OBSRV_IND",
+                        "type": "UTF8"
+                    },
+                    {
+                        "name": "GMT_OFFSET_MINUTE_QTY",
+                        "type": "INT32"
+                    },
+                    {
+                        "name": "GMT_OFFSET_TM",
+                        "type": "UTF8"
+                    },
+                    {
+                        "name": "DAY_LIGHT_SAVE_OFFSET_MINUTE_QTY",
+                        "type": "INT32"
+                    },
+                    {
+                        "name": "DAY_LIGHT_SAVE_OFFSET_TM",
+                        "type": "UTF8"
+                    },
+                    {
+                        "name": "AIRPRT_OFFSET_MINUTE_QTY",
+                        "type": "INT32"
+                    },
+                    {
+                        "name": "AIRPRT_OFFSET_TM",
+                        "type": "UTF8"
+                    },
+                    {
+                        "name": "UPDT_GMT_TMS",
+                        "type": "INT96"
+                    },
+                    {
+                        "name": "SNAPSHOT_DT",
+                        "type": "DATE"
+                    }
+                ]
+            },
+            "dependsOn": [
+                "[concat(variables('factoryId'), '/linkedServices/CPPDLArptTimeOffstLS')]"
+            ]
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/AzureKeyVault1')]",
+            "type": "Microsoft.DataFactory/factories/linkedServices",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "annotations": [],
+                "type": "AzureKeyVault",
+                "typeProperties": {
+                    "baseUrl": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/CPPDLArptTimeOffstLS')]",
+            "type": "Microsoft.DataFactory/factories/linkedServices",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "description": "The ADSL Gen2 Storage for AIRPRT_TIME_OFFSET",
+                "annotations": [],
+                "type": "AzureBlobFS",
+                "typeProperties": {
+                    "url": "[parameters('CPPDLArptTimeOffstLS_properties_typeProperties_url')]"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/CPP_AzureBlobStorageForArptOffset')]",
+            "type": "Microsoft.DataFactory/factories/linkedServices",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "annotations": [],
+                "type": "AzureBlobStorage",
+                "typeProperties": {
+                    "serviceEndpoint": "[parameters('CPP_AzureBlobStorageForArptOffset_properties_typeProperties_serviceEndpoint')]",
+                    "accountKind": "StorageV2"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/CPP_SQLMI_CEP_qa')]",
+            "type": "Microsoft.DataFactory/factories/linkedServices",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "annotations": [],
+                "type": "AzureSqlMI",
+                "typeProperties": {
+                    "server": "[parameters('CPP_SQLMI_CEP_qa_properties_typeProperties_server')]",
+                    "database": "[parameters('CPP_SQLMI_CEP_qa_properties_typeProperties_database')]",
+                    "encrypt": "mandatory",
+                    "trustServerCertificate": false,
+                    "authenticationType": "SystemAssignedManagedIdentity"
+                },
+                "connectVia": {
+                    "referenceName": "IR-Shared-CPP",
+                    "type": "IntegrationRuntimeReference"
+                }
+            },
+            "dependsOn": [
+                "[concat(variables('factoryId'), '/integrationRuntimes/IR-Shared-CPP')]"
+            ]
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/CPP_SQLMI_MCDM_qa')]",
+            "type": "Microsoft.DataFactory/factories/linkedServices",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "annotations": [],
+                "type": "AzureSqlMI",
+                "typeProperties": {
+                    "server": "[parameters('CPP_SQLMI_MCDM_qa_properties_typeProperties_server')]",
+                    "database": "[parameters('CPP_SQLMI_MCDM_qa_properties_typeProperties_database')]",
+                    "encrypt": "mandatory",
+                    "trustServerCertificate": false,
+                    "authenticationType": "SystemAssignedManagedIdentity"
+                },
+                "connectVia": {
+                    "referenceName": "IR-Shared-CPP",
+                    "type": "IntegrationRuntimeReference"
+                }
+            },
+            "dependsOn": [
+                "[concat(variables('factoryId'), '/integrationRuntimes/IR-Shared-CPP')]"
+            ]
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/IR-Shared-CPP')]",
+            "type": "Microsoft.DataFactory/factories/integrationRuntimes",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "type": "SelfHosted",
+                "description": "Load Station data",
+                "typeProperties": {
+                    "linkedInfo": {
+                        "resourceId": "[parameters('IR-Shared-CPP_properties_typeProperties_linkedInfo_resourceId')]",
+                        "authorizationType": "Rbac"
+                    }
+                }
+            },
+            "dependsOn": []
+        }
+    ]
+}
