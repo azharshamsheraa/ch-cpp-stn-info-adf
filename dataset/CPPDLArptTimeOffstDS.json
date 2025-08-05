@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "part-00000-00052e28-7286-452e-b147-2b7826632482-c000.snappy.parquet",
 				"folderPath": "stage/delta-pkg/AIRPRT_TIME_OFFSET",
 				"fileSystem": "refcorepkg"
 			},
