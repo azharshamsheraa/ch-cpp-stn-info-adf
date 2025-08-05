@@ -102,7 +102,10 @@
 						"type": "SqlMISink",
 						"writeBehavior": "upsert",
 						"upsertSettings": {
-							"useTempDB": true
+							"useTempDB": true,
+							"keys": [
+								"AIRPRT_IATA_CD"
+							]
 						},
 						"sqlWriterUseTableLock": true,
 						"tableOption": "autoCreate"
