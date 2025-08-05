@@ -1,0 +1,33 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "factoryName": {
+            "value": "ct-n-zeaus-cp-qa-stn-info-df"
+        },
+        "AzureKeyVault1_properties_typeProperties_baseUrl": {
+            "value": "https://ct-n-zeaus-cp-qa-kv.vault.azure.net/"
+        },
+        "CPPDLArptTimeOffstLS_properties_typeProperties_url": {
+            "value": "https://aabaoriondlsnp.dfs.core.windows.net"
+        },
+        "CPP_AzureBlobStorageForArptOffset_properties_typeProperties_serviceEndpoint": {
+            "value": "https://ctnzeauscppqasa.blob.core.windows.net/"
+        },
+        "CPP_SQLMI_CEP_qa_properties_typeProperties_server": {
+            "value": "ct-n-mcdm-fog.386e326565fc.database.windows.net"
+        },
+        "CPP_SQLMI_CEP_qa_properties_typeProperties_database": {
+            "value": "ct_t_cep_sqlmdb"
+        },
+        "CPP_SQLMI_MCDM_qa_properties_typeProperties_server": {
+            "value": "ct-n-mcdm-fog.386e326565fc.database.windows.net"
+        },
+        "CPP_SQLMI_MCDM_qa_properties_typeProperties_database": {
+            "value": "ct_t_mcdm_sqlmdb"
+        },
+        "IR-Shared-CPP_properties_typeProperties_linkedInfo_resourceId": {
+            "value": "/subscriptions/91c1395e-45ac-46d3-9c2e-734822dc13e2/resourcegroups/ct-n-zeaus-mcdm-rg/providers/Microsoft.DataFactory/factories/ct-n-zeaus-mcdm-data-migration-df/integrationruntimes/IR-ct-zeaus-mcdm"
+        }
+    }
+}
