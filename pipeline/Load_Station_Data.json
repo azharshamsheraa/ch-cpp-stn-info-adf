@@ -107,8 +107,7 @@
 								"AIRPRT_IATA_CD"
 							]
 						},
-						"sqlWriterUseTableLock": true,
-						"tableOption": "autoCreate"
+						"sqlWriterUseTableLock": true
 					},
 					"enableStaging": false,
 					"translator": {
