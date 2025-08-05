@@ -91,6 +91,7 @@
 							"type": "AzureBlobFSReadSettings",
 							"recursive": false,
 							"wildcardFolderPath": "stage/delta-pkg/AIRPRT_TIME_OFFSET",
+							"wildcardFileName": "*.parquet",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
