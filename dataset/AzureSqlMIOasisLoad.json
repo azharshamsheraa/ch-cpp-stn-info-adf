@@ -9,8 +9,8 @@
 		"type": "AzureSqlMITable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "dbo",
-			"table": "ECDD_STN_INFO_OASIS_LOAD"
+			"schema": "ECDOREF",
+			"table": "ECDD_STN_OFFSET_TM_INFO"
 		}
 	}
 }
