@@ -102,7 +102,10 @@
 						"type": "SqlMISink",
 						"writeBehavior": "upsert",
 						"upsertSettings": {
-							"useTempDB": true
+							"useTempDB": true,
+							"keys": [
+								"AIRPRT_NM"
+							]
 						},
 						"sqlWriterUseTableLock": true
 					},
